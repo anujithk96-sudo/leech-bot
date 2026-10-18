@@ -58,6 +58,8 @@ def download_youtube(url, quality):
             "fragment_retries": 3,
             "socket_timeout": 30,
             "overwrites": True,
+            # പ്രോക്സി സെറ്റിംഗ് ഇവിടെ ചേർത്തിരിക്കുന്നു
+            "proxy": "http://178.92.72.68:8080",
         }
 
         # Use cookies when the file exists.
