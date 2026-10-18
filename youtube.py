@@ -2,24 +2,26 @@ import os
 import yt_dlp
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-
-# നിങ്ങളുടെ മെയിൻ ബോട്ട് ഫയലിൽ നിന്നും app അല്ലെങ്കിൽ bot ഇറേത് ആണെങ്കിലും ഇവിടെ നൽകുക
-from bot import app  # അല്ലെങ്കിൽ bot.py എന്നതിന് പകരം മെയിൻ ഫയലിന്റെ പേര്
+from bot import app
 
 # Path for YouTube Cookies file
 COOKIE_FILE = "cookies.txt"
 
-# Handler for YouTube links or /youtube command
-@app.on_message(filters.regex(r"https?://(?:www\.)?(?:youtube\.com|youtu\.be)/.+") | filters.command("youtube"))
+# Handler for /yt and /ytdl commands only
+@app.on_message(filters.command(["yt", "ytdl"]))
 async def youtube_download_handler(client, message):
-    if len(message.command) > 1 and message.command[0] == "youtube":
-        url = message.command[1]
-    else:
-        url = message.text.strip()
-    
-    if not url.startswith("http"):
+    # Check if the link is provided with the command
+    if len(message.command) < 2:
+        await message.reply_text("Please provide a YouTube link!\nExample: `/yt <link>` or `/ytdl <link>`")
         return
 
+    url = message.command[1]
+    
+    if not url.startswith("http"):
+        await message.reply_text("Invalid YouTube link!")
+        return
+
+    # Inline buttons stacked vertically (one by one) in English
     keyboard = InlineKeyboardMarkup([
         [InlineKeyboardButton("🎬 144p", callback_data=f"dl|144|{url}")],
         [InlineKeyboardButton("🎬 240p", callback_data=f"dl|240|{url}")],
@@ -31,10 +33,11 @@ async def youtube_download_handler(client, message):
     ])
 
     await message.reply_text(
-        "YouTube link detected! Please select your preferred quality below:",
+        "YouTube link received! Please select your preferred quality below:",
         reply_markup=keyboard
     )
 
+# Callback query handler for downloads
 @app.on_callback_query(filters.regex("^dl\\|"))
 async def button_download_callback(client, callback_query):
     data = callback_query.data.split("|")
@@ -68,11 +71,13 @@ async def button_download_callback(client, callback_query):
             if quality == "mp3":
                 filename = filename.rsplit(".", 1)[0] + ".mp3"
 
+        # Sending file to Telegram
         await callback_query.message.reply_document(
             document=filename,
             caption="Here is your file! 🎉"
         )
         
+        # Cleaning up local storage
         if os.path.exists(filename):
             os.remove(filename)
             
