@@ -5,6 +5,7 @@ import asyncio
 import aiohttp
 import subprocess
 import random
+import youtube
 from datetime import datetime, timedelta
 from pyrogram import Client, filters, idle
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
