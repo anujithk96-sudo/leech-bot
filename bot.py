@@ -68,7 +68,7 @@ CANCEL_REQUESTS = set()
 PREMIUM_USERS = {}
 VERIFIED_USERS = {}
 
-START_IMAGE_URL = "https://files.catbox.moe/yazhfx.jpg"
+START_IMAGE_URL = "https://ibb.co/2YLPDBzQ"
 
 # Footer Branding Blockquote Format
 def get_branding_footer():
