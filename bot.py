@@ -79,7 +79,7 @@ CANCEL_REQUESTS = set()
 PREMIUM_USERS = {}
 VERIFIED_USERS = {}
 
-START_IMAGE_URL = "https://files.catbox.moe/yazhfx.jpg"
+START_IMAGE_URL = "https://ibb.co/2YLPDBzQ"
 
 async def web_handler(request):
     return web.Response(text="Bot is Live! 🚀")
