@@ -651,7 +651,7 @@ async def start_handler(client: Client, message: Message):
 
     welcome_text = (
         f"🌟 **Welcome to Advanced Leech Bot, {user_name}!** 🚀\n\n"
-        f"I am an advanced Leech Bot. I can help you download videos and audio from TeraBox, YouTube, Gofile, Telegram links, M3U8, MP4, MP3, and more.\n\n"
+        f"I am an advanced Leech Bot. I can help you download videos and audio from Instagram, YouTube, Gofile, Telegram links, TeraBox, M3U8, MP4, MP3, and more.\n\n"
         f"🛠️ **Key Features:**\n"
         f" • Use `-n` to rename media.\n"
         f" • Use `-t` to set custom thumbnails.\n"
