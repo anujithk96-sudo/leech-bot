@@ -5,7 +5,7 @@ import asyncio
 import aiohttp
 import subprocess
 import random
-import Redeem
+# import Redeem
 # import youtube
 from datetime import datetime, timedelta
 from pyrogram import Client, filters, idle
