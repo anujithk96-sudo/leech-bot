@@ -1814,3 +1814,6 @@ async def main():
 
 if __name__ == "__main__":
     app.run(main())
+
+# Register leech command handlers
+register_leech_handlers(app)
