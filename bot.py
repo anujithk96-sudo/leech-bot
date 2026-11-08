@@ -15,6 +15,7 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, 
 from pyrogram.errors import UserNotParticipant
 import yt_dlp
 from aiohttp import web
+from leech import register_leech_handlers
 
 # Logging Setup
 logging.basicConfig(level=logging.INFO)
